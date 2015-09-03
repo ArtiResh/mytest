@@ -61,8 +61,8 @@ class IndexController extends Controller
     {
         $offset = Input::get('offset');
         $news = App\News::latest('created_at')->skip($offset)->take(6)->get();
-        \DB::table('news')->count() > 7 + $offset ? $show = true : $show = false;
-        return ['news' => $news, 'showmore' => $show];
+        \DB::table('news')->count() > 7 + $offset ? $hide = false : $hide = true;
+        return ['news' => $news, 'hide' => $hide];
     }
 
     /**
@@ -71,9 +71,12 @@ class IndexController extends Controller
      * @param  int $id
      * @return Response
      */
-    public function edit($id)
+    public function read($id)
     {
-        //
+
+        $id = preg_replace("/[^0-9]/", '', $id);
+        $item = App\News::where('id','=', $id);
+        return view('showarticle',['item' => $item]);
     }
 
     /**

@@ -8,7 +8,6 @@
           rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900,400italic&subset=cyrillic,latin' rel='stylesheet'
           type='text/css'>
-    {{--{!! Html::style('css/style.css') !!}--}}
     {!! Html::style('css/template_styles.css') !!}
 </head>
 <body>
@@ -42,7 +41,9 @@
                         <h2><a href="{{$item['url']}}">{!!$item['title']!!}</a></h2>
 
                         <div class="text_from_news">
-                            {!!$item['text_news']!!}
+                            <a href="/article/{!!$item['id']!!}">
+                                {!!$item['text_news']!!}
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -69,9 +70,9 @@
 
                     Загрузить еще...
                 </div>
-
+            @endif
         </div>
-        @endif
+
     </main>
     <footer>
         <div>

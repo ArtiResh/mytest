@@ -1,6 +1,15 @@
 $(document).ready(function () {
 
-
+    //showArticle = function(item){
+    //    $.ajax({
+    //        url: "/article",
+    //        data: {id: item},
+    //        type: "POST",
+    //        beforeSend: function (request) {
+    //            return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
+    //        }
+    //    });
+    //};
 
     showNewses = function (data) {
         data.news.forEach(function (item) {
@@ -12,7 +21,7 @@ $(document).ready(function () {
                 .append($('.loading'));
 
         });
-        if(!data.show){
+        if(data.hide){
             $('.loading').remove()
         }
         $('.news h2 a').click(function () {
@@ -22,9 +31,10 @@ $(document).ready(function () {
     };
 
     $('.loading').click(function () {
+
         $.ajax({
             url: "/show",
-            data: {offset: 6},
+            data: {offset: $('.news').length},
             type: "POST",
             beforeSend: function (request) {
                 return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
@@ -85,9 +95,7 @@ $(document).ready(function () {
 
     $('.exit').click(function () {
         $('.add_news_form').slideToggle();
-        $('.add_news').removeClass('add_news_open_form');
-        $('input[name=title_news]').attr('value', '');
-        $('textarea').val('');
+        $('#news_form')[0].reset();
         return false;
     });
 
