@@ -1,70 +1,97 @@
+$(document).ready(function () {
 
-$(document).ready(function(){
 
-    $('.news').hide();
 
-    var i=0;
+    showNewses = function (data) {
+        data.news.forEach(function (item) {
+            $('.block_news')
+                .append(
+                "<div class='news' data-id=" + item.id + "><span class='date_span'>"
+                + item.created_at + "</span> <h2><a href=" + item.url + ">" + item.title + "</a></h2><div class='text_from_news'>" +
+                item.text_news + "</div></div>")
+                .append($('.loading'));
 
-    for (i; i<5; i++) {
-        $('.news').each(function(){
-            if ($(this).attr('data-id')==i) {
-                $(this).show();
+        });
+        if(!data.show){
+            $('.loading').remove()
+        }
+        $('.news h2 a').click(function () {
+            $(this).parent('h2').parent('.news').children('.text_from_news').slideToggle();
+            return false;
+        });
+    };
+
+    $('.loading').click(function () {
+        $.ajax({
+            url: "/show",
+            data: {offset: 6},
+            type: "POST",
+            beforeSend: function (request) {
+                return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
+            },
+            success: function (request) {
+                showNewses(request);
             }
         });
-    }
-
-    $('.loading').click(function(){
-        var m = $('.news').length;
-
-        console.log(i);
-        var k = i+4;
-        for (i; i<=k; i++) {
-            $('.news').each(function(){
-                if ($(this).attr('data-id')==i) {
-                    $(this).show();
-                }
-                if (m<i || m==i) {
-                    $('.loading').hide();
-                }
-            });
-        }
-
-
     });
 
-    $('.add_news').click(function(){
+    $('.add_news').click(function () {
         $('.add_news_form').slideToggle();
-        if ($(this).attr('class')!='add_news add_news_open_form')
+        if ($(this).attr('class') != 'add_news add_news_open_form')
             $(this).addClass('add_news_open_form');
         else
             $(this).removeClass('add_news_open_form');
     });
 
-    $('.send').click(function(){
+    $('.send').click(function (e) {
+        e.preventDefault();
         var form_title = $('input[name=title_news]').attr('value');
         var form_text = $('textarea').val();
-        if (form_title==null || form_title=='' || form_title==' ') {
-            $('input[name=title_news]').css('border-color','red');
+        if (form_title == null || form_title == '' || form_title == ' ') {
+            $('input[name=title_news]').css('border-color', 'red');
         } else {
-            $('input[name=title_news]').css('border-color','rgba(212,208,207,1)');
+            $('input[name=title_news]').css('border-color', 'rgba(212,208,207,1)');
         }
-        if (form_text==null || form_text=='' || form_text==' ') {
-            $('textarea').css('border-color','red');
+        if (form_text == null || form_text == '' || form_text == ' ') {
+            $('textarea').css('border-color', 'red');
         } else {
-            $('textarea').css('border-color','rgba(212,208,207,1)');
+            $('textarea').css('border-color', 'rgba(212,208,207,1)');
+        }
+        if(form_title!=''&&form_text!=''){
+            $.ajax({
+                url: "/create",
+                data: {
+                    title: form_title,
+                    text: form_text
+                },
+                type: "POST",
+                beforeSend: function (request) {
+                    return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
+                },
+                success: function (request) {
+                    $('.block_news')
+                        .prepend(
+                        "<div class='news' data-id=" + request.article.id + "><span class='date_span'>"
+                        + request.article.created_at + "</span> <h2><a href=" + request.article.url + ">" + form_title + "</a></h2><div class='text_from_news'>" +
+                        form_text + "</div></div>");
+                    $('#news_form')[0].reset();
+                    $('.add_news_form').slideToggle();
+
+                }
+            });
         }
         return false;
     });
 
-    $('.exit').click(function(){
+    $('.exit').click(function () {
         $('.add_news_form').slideToggle();
         $('.add_news').removeClass('add_news_open_form');
-        $('input[name=title_news]').attr('value','');
+        $('input[name=title_news]').attr('value', '');
         $('textarea').val('');
         return false;
     });
 
-    $('.news h2 a').click(function(){
+    $('.news h2 a').click(function () {
         $(this).parent('h2').parent('.news').children('.text_from_news').slideToggle();
         return false;
     });
