@@ -1,0 +1,291 @@
+@import "http://webfonts.ru/import/lato.css";
+
+
+html { height: 100%; }
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+h2, h3, h4, h5, h6, span, div, a, li, input, textarea, button, p, article {
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+}
+
+.all {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+header {
+	width: 100%;
+	border-bottom: 1px solid rgba(212,208,207,1);
+}
+
+
+
+h1 {
+	font-family: 'PT Serif Caption', serif;
+	font-size: 50px;
+	color: #4b4b4b;
+	padding: 55px 0 45px 0;
+	font-weight: 400;
+	text-align: center;
+}
+
+.beta {
+	font-family: 'Lato Hairline';
+	font-size: 25px;
+	color: #d3cfce;
+	font-style: italic;
+	vertical-align: top;
+}
+
+
+main {
+	width: 632px;
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+}
+
+
+.big_block {
+	display: table-cell;
+    width:100%;
+}
+
+.add_news {
+	margin: 41px 0 38px -20px;
+	padding: 15px 20px 12px 20px;
+	text-transform: uppercase;
+	color: #2980b9;
+	border: 1px solid #2980b9;
+	border-radius: 25px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 14px;
+	transition: 0.5s all ease;
+}
+
+.add_news_open_form{
+	background-color: #e6e6e6!important;
+	border-color: #e6e6e6!important;
+	color: #fff;
+	cursor: pointer;
+}
+
+.add_news:hover  {
+	background-color: #2980b9;
+	border-color: #2980b9;
+	color: #fff;
+	cursor: pointer;
+}
+
+.add_news_form {
+	display: none;
+}
+
+.news {
+	margin: 25px 25px 25px 0px;
+}
+
+.date_span {
+	font-style: italic;
+	font-size: 14px;
+}
+
+h2 a{
+	font-size: 18px;
+	color: #2980b9;
+	font-weight: 400;
+	text-decoration: none;
+	padding: 10px 0 20px 0;
+	display: block;
+}
+
+h2 a:hover {
+	color: #ff6138;
+}
+
+a {
+	color: #2980b9;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ff6138;
+}
+
+.add_news_form {
+	width:100%;
+  	padding:25px;
+  	border:1px solid rgba(212,208,207,1);
+}
+
+.input {
+	width:100%;
+  	padding: 7px 15px;
+  	display:block;
+  	margin-bottom: 20px;
+  	font-size:16px;
+  	border:1px solid rgba(212,208,207,1);
+}
+
+.textarea {
+	width:100%;
+  	padding: 7px 15px;
+  	display:block;
+  	margin-bottom: 40px;
+  	font-size:16px;
+  height: 200px;
+  border:1px solid rgba(212,208,207,1);
+}
+
+.date_publish {
+	width:210px;
+  	padding: 7px 15px 7px 30px ;
+  	display:block;
+  	margin-bottom: 20px;
+  	font-size:16px;
+	float:left;
+  border:1px solid rgba(212,208,207,1);
+}
+
+.send {
+	padding: 15px 30px 12px 30px;
+	text-transform: uppercase;
+	color: #2980b9;
+  	background-color:#fff;
+	border: 1px solid #2980b9;
+	border-radius: 25px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 14px;
+	transition: 0.5s all ease;
+}
+
+
+.send:hover  {
+	background-color: #2980b9;
+	border-color: #2980b9;
+	color: #fff;
+	cursor: pointer;
+}
+
+.text_from_news {
+	display:none;
+}
+
+.float_right {
+	float:right;
+  margin-top:-10px;
+}
+
+.exit {
+	color: #2980b9;
+  	text-transform: uppercase;
+  font-weight: bold;
+  font-size:14px;
+  padding-right: 25px;
+  position:relative;
+}
+
+.exit:hover {
+	cursor:pointer;
+}
+
+.exit:before {
+	content: '';
+    position:absolute;
+    display:block;
+    left:0;
+  background: url(images/cross.png) no-repeat 0 0;
+  width: 10px;
+  height: 10px;
+  top: 3px;
+  left: -15px;
+}
+
+p {
+	padding-bottom: 20px;
+}
+
+footer {
+	border-top: 1px solid #d3cfce;
+  	width:100%;
+  padding: 25px 0;
+  margin-top: 50px;
+}
+
+footer div {
+	font-size: 14px;
+  max-width:250px;
+  display:block;
+  margin: 0 auto;
+}
+
+.rel_date {
+	position:relative;
+	float:left;
+	display:block;
+}
+
+.rel_date svg {
+	position: absolute;
+	left:0;
+}
+
+.loading {
+	font-weight: bolder;
+	text-transform: uppercase;
+	color: #2980b9;
+	font-size:14px;
+	width: 50%;
+	border-top: 1px solid #d3cfce;
+	padding-top: 30px;
+}
+
+.loading svg {
+	display:block;
+	float:left;
+	margin-top:-10px;
+}
+
+.loading svg g g path {
+	fill: #2980b9;
+}
+
+.loading:hover, .loading:hover > svg g g path  {
+	color: #ff6138;
+	fill: #ff6138;
+	cursor:pointer;
+}
+
