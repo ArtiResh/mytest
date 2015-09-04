@@ -12,4 +12,8 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+#    RewriteCond %{REQUEST_URI} !(/|.json)$ [NC]
+#    RewriteRule ^(.*)$ http://site.ru/$1/ [R=301,L]
+#    RewriteRule ^article/(.*?)&&(.*?)  ^article/$2 [R=301,L]
 </IfModule>

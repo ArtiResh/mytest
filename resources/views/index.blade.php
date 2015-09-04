@@ -36,12 +36,12 @@
             <div class="block_news">
                 @foreach($news as $item)
                     <div class="news" data-id="{{$item['id']}}">
-                        <span class="date_span">{{$item['created_at']}}</span>
+                        <span class="date_span">{{$item['created']}}</span>
 
                         <h2><a href="{{$item['url']}}">{!!$item['title']!!}</a></h2>
 
                         <div class="text_from_news">
-                            <a href="/article/{!!$item['id']!!}">
+                            <a href="article/{!!$item['id']!!}&&{{$item['url']}}">
                                 {!!$item['text_news']!!}
                             </a>
                         </div>

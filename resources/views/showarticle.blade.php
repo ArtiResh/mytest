@@ -9,6 +9,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,900,400italic&subset=cyrillic,latin' rel='stylesheet'
           type='text/css'>
     {!! Html::style('css/template_styles.css') !!}
+    {!! Html::style('css/article_styles.css') !!}
 </head>
 <body>
 
@@ -18,19 +19,20 @@
     </header>
     <main>
         <div class="big_block">
-            <div class="add_news"><a href="/">Назад</a></div>
-            <div class="block_news">{{$item['id']}}
-                {{--<div class="news">--}}
-                    {{--<span class="date_span">{{$item['created_at']}}</span>--}}
+            <div class="add_news"><a href="" onclick="window.history.back()">Назад</a></div>
+            @foreach($item as $it)
+            <div class="block_news">
+                <div class="news">
+                    <span class="date_span">{{$it['created_at']}}</span>
 
-                    {{--<h2>{!!$item['title']!!}</h2>--}}
+                    <h2>{!!$it['title']!!}</h2>
 
-                    {{--<div class="text_from_news">--}}
-                        {{--{!!$item['text_news']!!}--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
+                    <div class="text_from_news">
+                        {!!$it['text_news']!!}
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </main>
     <footer>

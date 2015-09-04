@@ -1,22 +1,11 @@
 $(document).ready(function () {
 
-    //showArticle = function(item){
-    //    $.ajax({
-    //        url: "/article",
-    //        data: {id: item},
-    //        type: "POST",
-    //        beforeSend: function (request) {
-    //            return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
-    //        }
-    //    });
-    //};
-
     showNewses = function (data) {
         data.news.forEach(function (item) {
             $('.block_news')
                 .append(
                 "<div class='news' data-id=" + item.id + "><span class='date_span'>"
-                + item.created_at + "</span> <h2><a href=" + item.url + ">" + item.title + "</a></h2><div class='text_from_news'>" +
+                + item.created + "</span> <h2><a href=" + item.url + ">" + item.title + "</a></h2><div class='text_from_news'>" +
                 item.text_news + "</div></div>")
                 .append($('.loading'));
 
@@ -33,7 +22,7 @@ $(document).ready(function () {
     $('.loading').click(function () {
 
         $.ajax({
-            url: "/show",
+            url: "show",
             data: {offset: $('.news').length},
             type: "POST",
             beforeSend: function (request) {
@@ -69,7 +58,7 @@ $(document).ready(function () {
         }
         if(form_title!=''&&form_text!=''){
             $.ajax({
-                url: "/create",
+                url: "create",
                 data: {
                     title: form_title,
                     text: form_text
@@ -82,7 +71,7 @@ $(document).ready(function () {
                     $('.block_news')
                         .prepend(
                         "<div class='news' data-id=" + request.article.id + "><span class='date_span'>"
-                        + request.article.created_at + "</span> <h2><a href=" + request.article.url + ">" + form_title + "</a></h2><div class='text_from_news'>" +
+                        + request.article.created + "</span> <h2><a href=" + request.article.url + ">" + form_title + "</a></h2><div class='text_from_news'>" +
                         form_text + "</div></div>");
                     $('#news_form')[0].reset();
                     $('.add_news_form').slideToggle();

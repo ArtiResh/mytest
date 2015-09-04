@@ -1,0 +1,9 @@
+.news h2{
+    margin-bottom: 30px;
+}
+.news .text_from_news{
+    display:block;
+}
+.add_news:hover a{
+    color:#FFFFFF;
+}
