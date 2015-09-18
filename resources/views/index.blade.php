@@ -41,7 +41,7 @@
                         <h2><a href="{{$item['url']}}">{!!$item['title']!!}</a></h2>
 
                         <div class="text_from_news">
-                            <a href="article/{!!$item['id']!!}&&{{$item['url']}}">
+                            <a href="{{ URL::to('article/'.$item['id'].'/'.$item['url'])}}">
                                 {!!$item['text_news']!!}
                             </a>
                         </div>

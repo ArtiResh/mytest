@@ -11,6 +11,8 @@ Route::filter('csrf-ajax', function()
 Route::get('/', 'IndexController@index');
 Route::post('show', ['before'=>'csrf-ajax', 'as'=>'show', 'uses'=>'IndexController@show']);
 Route::post('create', ['before'=>'csrf-ajax', 'as'=>'create', 'uses'=>'IndexController@create']);
-Route::get('article/{id}', ['as'=>'read', 'uses'=>'IndexController@read']);
+Route::get('article/{id}/{title}', ['as'=>'read', 'uses'=>'IndexController@read']);
+
+
 
 

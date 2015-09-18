@@ -41,6 +41,7 @@ class IndexController extends Controller
         $article = new App\News;
         $article->title = strip_tags($title, $tags);
         $article->text_news = strip_tags($text, $tags);
+        $article->created_at = new \DateTime();
         $article->save();
         $last = App\News::orderby('id', 'desc')->first();
         $last['url'] = IndexController::translitURL($last['title']);
@@ -84,9 +85,8 @@ class IndexController extends Controller
      */
     public function read($id)
     {
-        $id = explode("&&",$id);
-//        $id = preg_replace("/[^0-9]/", '', $id);
-        $item = App\News::where('id','=', $id[0])->get();
+        $id = preg_replace("/[^0-9]/", '', $id);
+        $item = App\News::where('id','=', $id)->get();
         return view('showarticle',['item' => $item]);
     }
 
@@ -135,12 +135,12 @@ class IndexController extends Controller
         );
         $str = strtr($str,$tr);
         $str = substr($str, 0, 20);
-        $str = substr($str,0,strrpos($str,"_"));
+        (strpos($str,"_")) ? $str = substr($str, 0, strrpos($str, "_")):null;
+
         return $str;
     }
 
     public function restyleDate($date){
-        date_default_timezone_set('Europe/Moscow');
         $now = time();
         $diff_date = strtotime($date)-intval(date('Z'));
         $difference = $now-$diff_date;

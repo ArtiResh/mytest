@@ -5,8 +5,9 @@ $(document).ready(function () {
             $('.block_news')
                 .append(
                 "<div class='news' data-id=" + item.id + "><span class='date_span'>"
-                + item.created + "</span> <h2><a href=" + item.url + ">" + item.title + "</a></h2><div class='text_from_news'>" +
-                item.text_news + "</div></div>")
+                + item.created + "</span> <h2><a href=" + item.url + ">" + item.title + "</a></h2>" +
+                "<div class='text_from_news'>" +
+                "<a href='article/"+ item.id +"/"+item.url+"'>"+  item.text_news + "</a></div></div>")
                 .append($('.loading'));
 
         });
@@ -72,10 +73,13 @@ $(document).ready(function () {
                         .prepend(
                         "<div class='news' data-id=" + request.article.id + "><span class='date_span'>"
                         + request.article.created + "</span> <h2><a href=" + request.article.url + ">" + form_title + "</a></h2><div class='text_from_news'>" +
-                        form_text + "</div></div>");
+                       "<a href='article/"+ request.article.id +'/'+request.article.url+"'>"+ form_text + "</div></div>");
                     $('#news_form')[0].reset();
                     $('.add_news_form').slideToggle();
-
+                    $('.news').first().find('h2 a').click(function () {
+                          $(this).parent('h2').parent('.news').children('.text_from_news').slideToggle();
+                        return false;
+                    });
                 }
             });
         }
